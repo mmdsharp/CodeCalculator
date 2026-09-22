@@ -66,14 +66,41 @@ FileFinderOptions options = GetFileFinderOptions();
 
 List<FileProperty> files = fileFinder.GetFiles(options);
 
+SumFileProperty sumFileProperty = new(files);
+
+Console.WriteLine(
+    "all files : \n" +
+    StringExtensions.ShiftTab(
+        sumFileProperty.ToString()));
+
+List<SumFilePropertyGroup> groups =
+    SumFilePropertyGroup.GroupByExtension(sumFileProperty);
+
+if (groups.Count > 1)
+{
+    Console.WriteLine($"your projct contains {JoinWithAnd(
+        groups.Select(g => g.Key).ToList())} files");
+}
+
+foreach (var group in groups)
+{
+    Console.WriteLine(group.ToString());
+}
 
 
+static string JoinWithAnd(List<string> types)
+{
+    string result = types[0];
 
+    for (int i = 1; i < types.Count - 1; i++)
+    {
+        result += ", " + types[i];
+    }
 
+    result += " and " + types.Last();
 
-
-
-
+    return result;
+}
 
 static FileFinderOptions GetFileFinderOptions()
 {
