@@ -4,6 +4,13 @@
     {
         public string Key { get; set; }
         public SumFileProperty SumFileProperty { get; set; }
+        public override string ToString()
+        {
+            return $"{Key} : {Environment.NewLine}" +
+                StringExtensions.ShiftTab(
+                   SumFileProperty.ToString()
+            );
+        }
 
         public static List<SumFilePropertyGroup> GroupByExtension(SumFileProperty sumFileProperty)
         {
