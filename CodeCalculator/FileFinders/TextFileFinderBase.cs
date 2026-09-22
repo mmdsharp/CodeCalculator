@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace CodeCalculator.FileFinders;
+﻿namespace CodeCalculator.FileFinders;
 
 internal abstract class TextFileFinderBase : IFileFinder
 {
